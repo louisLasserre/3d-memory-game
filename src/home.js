@@ -9,5 +9,5 @@ button.addEventListener("click", () => {
   if (value <= 2) {
     value = 6;
   }
-  window.location.href = `https://3d-memory-game-louis.vercel.app/game.html?count=${value}`;
+  window.location.href = `https://3d-memory-game-louis.vercel.app/game/?count=${value}`;
 });
