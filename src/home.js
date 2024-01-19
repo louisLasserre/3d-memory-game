@@ -1,7 +1,4 @@
-console.log("hello");
-
 const button = document.querySelector(".button");
-
 const input = document.querySelector("input");
 
 button.addEventListener("click", () => {
@@ -12,5 +9,5 @@ button.addEventListener("click", () => {
   if (value <= 2) {
     value = 6;
   }
-  window.location.href = `http://localhost:5173/game.html?count=${value}`;
+  window.location.href = `https://3d-memory-game-louis.vercel.app/game.html?count=${value}`;
 });
