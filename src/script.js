@@ -59,7 +59,7 @@ function handleWinOrLose() {
 
     return;
   }
-  console.log(box1);
+
   box1.gameStatus = "lost";
   box2.gameStatus = "lost";
   platform1.mesh.material.color.set("#FF0000");
@@ -76,7 +76,7 @@ function selectModel(platform, model) {
     platform,
     model,
   };
-  console.log(platform);
+
   if (platform[0].object.gameStatus === "win") {
     return;
   }
@@ -130,17 +130,14 @@ function parseModels() {
       gameModels.push(gameObject);
 
       if (gameModels.length === count / 2) {
-        console.log("parse");
         return parseModels();
       }
       if (count === gameModels.length) {
-        console.log("place");
         return placeGameObjects();
       }
       // // Animation
     });
   });
-  // console.log(gameModels.length);
 }
 const basicMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
 
@@ -326,6 +323,17 @@ window.addEventListener("mousedown", (e) => {
   if (currentIntersects.length > 0) {
     const { x, z } = currentIntersects[0].object.position;
 
+    if (selected.length === 0) {
+      selectModel(currentIntersects, placedGameModels[x][z].model);
+      return;
+    }
+    if (
+      (selected.length === 2 &&
+        selected[0].platform[0].object.gameStatus === "selected") ||
+      selected[0].platform[0].object.gameStatus === "lost"
+    ) {
+      return;
+    }
     selectModel(currentIntersects, placedGameModels[x][z].model);
   }
 });
